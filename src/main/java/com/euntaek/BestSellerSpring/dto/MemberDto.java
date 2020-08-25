@@ -5,10 +5,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor   //인자가없는
 public class MemberDto {
     private String user_id;
-    private String pw;
+    private String password;
     private String name;
     private String address;
     private String birth;
@@ -16,7 +16,7 @@ public class MemberDto {
     public Member toEntity(){
         return Member.builder()
                 .user_id(user_id)
-                .pw(pw)
+                .password(password)
                 .name(name)
                 .address(address)
                 .birth(birth)
@@ -24,9 +24,9 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(String user_id,String pw,String name,String address,String birth){
+    public MemberDto(String user_id,String password,String name,String address,String birth){
         this.user_id=user_id;
-        this.pw=pw;
+        this.password=password;
         this.name=name;
         this.address=address;
         this.birth=birth;

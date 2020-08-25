@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- Theme Made By www.w3schools.com - No Copyright -->
@@ -228,8 +228,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a th:href="@{'/'}">HOME</a></li>
                 <li><a th:href="@{'/about'}">ABOUT US</a></li>
-                <li><a th:href="@{'/join'}">JOIN</a></li>
-                <li><a th:href="@{'/login'}">LOGIN</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{'/'}">GIFT</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{'/'}">DONATION</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{'/'}">RECOMMENDED</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{'/'}">MYINFO</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{'/logout'}">LOGOUT</a></li>
+                <li><a sec:authorize="isAnonymous()" th:href="@{'/join'}">JOIN</a></li>
+                <li><a sec:authorize="isAnonymous()" th:href="@{'/login'}">LOGIN</a></li>
 
             </ul>
         </div>

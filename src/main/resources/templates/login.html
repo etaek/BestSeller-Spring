@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
 
@@ -74,9 +74,10 @@
 
                         <div id="s2">
                             <p>Please fill out the book for the person who will present it to you.</p>
-                            <form action="login.do" method="post"><!--this show forms.-->
-                                <input type="text" name="user_id" id="user_id" class="inpt" required="required" placeholder="ID"></br><br/>
-                                <input type="text" name="pw" id="pw" class="inpt" required="required" placeholder="Password"></br><br/>
+                            <form action="/login" method="post"><!--this show forms.-->
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <!--반드시 username이어야함--> <input type="text" name="username" id="user_id" class="inpt" required="required" placeholder="ID"></br><br/>
+                                <input type="password" name="password" id="pw" class="inpt" required="required" placeholder="Password"></br><br/>
                                 <!--<input type="text" name="" class="postcodify_postcode5" value="" required="required" placeholder="zip code" style="width:50%;"/>
                                   <input type="button" id="postcodify_search_button" value="search" class="Btn" style=width:30%;><br />
                                   <input type="text" name="road_name" class="postcodify_address" value="" required="required" placeholder="The road name"/><br />

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:th2="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -29,7 +29,7 @@
    <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="main.jsp">Best Seller</a>
+      <a class="navbar-brand" th:href="@{'/'}">Best Seller</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -75,10 +75,10 @@
 
             <div id="s2">
               <p>Please fill out the book for the person who will present it to you.</p>
-              <form name="myform" action="/join" method="post"><!--this show forms.-->
+              <form name="myform" th:action="@{/join}" method="post"><!--this show forms.-->
             
                 <input type="text" name="user_id" id="user_id" class="inpt" required="required" placeholder="ID"></br><br/>
-                <input type="text" name="pw" id="pw" class="inpt" required="required" placeholder="Password"></br><br/>
+                <input type="text" name="password" id="password" class="inpt" required="required" placeholder="Password"></br><br/>
                 <input type="text" name="name" id="name" class="inpt" required="required" placeholder="Name"></br><br/>
                 <input type="text" name="address" id="address" class="inpt" required="required" placeholder="Address"></br><br/>
                 <input type="text" name="birth" id="birth" class="inpt" required="required" placeholder="Birth(YYMMDD)"></br><br/>
