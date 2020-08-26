@@ -15,13 +15,13 @@ public class MemberController {
     //로그인 페이지
     @GetMapping("/login")
     public String loginForm(){
-        return "login";
+        return "user/login";
     }
 
     //회원가입 페이지
     @GetMapping("/join")
     public String joinForm(){
-        return "join";
+        return "user/join";
     }
 
     //회원가입 처리
@@ -30,6 +30,8 @@ public class MemberController {
         memberService.save(memberDto);
         return "redirect:/";
     }
+
+
 
 
 }

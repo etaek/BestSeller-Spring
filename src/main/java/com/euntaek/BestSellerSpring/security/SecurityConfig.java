@@ -47,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {  //인증 및
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .and().exceptionHandling().accessDeniedPage("/denied");
+                .invalidateHttpSession(true);
+
 
     }
 

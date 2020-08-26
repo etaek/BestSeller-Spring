@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor   //인자가없는
 public class MemberDto {
+
     private String user_id;
     private String password;
     private String name;

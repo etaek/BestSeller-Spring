@@ -2,10 +2,10 @@ package com.euntaek.BestSellerSpring.service;
 
 import com.euntaek.BestSellerSpring.domain.Member;
 import com.euntaek.BestSellerSpring.domain.Role;
+import com.euntaek.BestSellerSpring.dto.GiftDto;
 import com.euntaek.BestSellerSpring.dto.MemberDto;
 import com.euntaek.BestSellerSpring.repository.MemberRepository;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,23 @@ public class MemberService implements UserDetailsService {
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
         return memberRepository.save(memberDto.toEntity()).getUser_id();
     }
+    @Transactional
+    public MemberDto getMemberList(GiftDto giftDto){ //gift 결과 목록
+        Optional<Member> target=memberRepository.findById(giftDto.getTarget_id());
+        Member member=target.get();
 
+        MemberDto memberDTO = MemberDto.builder()
+                .user_id(member.getUser_id())
+                .password(member.getPassword())
+                .name(member.getName())
+                .address(member.getAddress())
+                .birth(member.getBirth())
+                .build();
+
+
+
+        return memberDTO;
+    }
     @Override
     public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 
