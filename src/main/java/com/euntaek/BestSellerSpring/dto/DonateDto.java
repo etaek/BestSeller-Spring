@@ -1,48 +1,43 @@
 package com.euntaek.BestSellerSpring.dto;
 
-
+import com.euntaek.BestSellerSpring.domain.Donate;
 import com.euntaek.BestSellerSpring.domain.Gift;
-import com.euntaek.BestSellerSpring.domain.Member;
-import com.euntaek.BestSellerSpring.repository.CountRepository;
-import com.euntaek.BestSellerSpring.service.GiftService;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor   //인자가없는
-public class GiftDto {
-
-
+public class DonateDto {
+    private Long d_num;
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     private String user_id=auth.getName();
-    private String target_id="user"+String.valueOf((int)((Math.random()*1100)+1));;
     private String bookname;
     private String author;
+    private String foundation;
 
-    public Gift toEntity(){
-        return Gift.builder()
+    public Donate toEntity(){
+        return Donate.builder()
+                .d_num(d_num)
                 .user_id(user_id)
-                .target_id(target_id)
                 .bookname(bookname)
                 .author(author)
+                .foundation(foundation)
                 .build();
     }
 
     @Builder
-    public GiftDto(String user_id,String target_id,String bookname,String author){
+    public DonateDto(Long d_num,String user_id,String bookname, String author, String foundation){
+        this.d_num=d_num;
         this.user_id=user_id;
-        this.target_id=target_id;
         this.bookname=bookname;
         this.author=author;
+        this.foundation=foundation;
     }
 }

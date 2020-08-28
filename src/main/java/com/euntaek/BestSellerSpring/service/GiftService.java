@@ -4,6 +4,7 @@ import com.euntaek.BestSellerSpring.domain.Gift;
 import com.euntaek.BestSellerSpring.domain.Member;
 import com.euntaek.BestSellerSpring.dto.GiftDto;
 import com.euntaek.BestSellerSpring.dto.MemberDto;
+import com.euntaek.BestSellerSpring.repository.CountRepository;
 import com.euntaek.BestSellerSpring.repository.GiftRepository;
 import com.euntaek.BestSellerSpring.repository.MemberRepository;
 import lombok.AllArgsConstructor;
@@ -18,11 +19,11 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor // 생성자 생성
+@Transactional//트랜잭션 적용
 public class GiftService {
     private GiftRepository giftRepository;
-    private MemberRepository memberRepository;
+    private CountRepository countRepository;
 
-    @Transactional //트랜잭션 적용
     public String save(GiftDto giftDto){
 
         return giftRepository.save(giftDto.toEntity()).getUser_id();
