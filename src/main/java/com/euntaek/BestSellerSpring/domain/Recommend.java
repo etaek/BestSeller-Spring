@@ -21,15 +21,15 @@ public class Recommend {
     private String bname;
     @Column(name="contents")
     private String contents;
-    @Column(name="user_id")
-    private String user_id;
+    @Column(name="userid")
+    private String userid;
 
     @Builder
-    public Recommend(Long r_num,String bname,String contents,String user_id){
+    public Recommend(Long r_num,String bname,String contents,String userid){
         this.r_num=r_num;
         this.bname=bname;
         this.contents=contents;
-        this.user_id=user_id;
+        this.userid=userid;
     }
 
 }

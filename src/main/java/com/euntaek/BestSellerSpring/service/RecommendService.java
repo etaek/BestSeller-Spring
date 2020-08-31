@@ -1,44 +1,65 @@
 package com.euntaek.BestSellerSpring.service;
 
 import com.euntaek.BestSellerSpring.domain.BestSeller;
+import com.euntaek.BestSellerSpring.domain.Member;
 import com.euntaek.BestSellerSpring.domain.Recommend;
-import com.euntaek.BestSellerSpring.dto.BestSellerDto;
-import com.euntaek.BestSellerSpring.dto.DonateDto;
-import com.euntaek.BestSellerSpring.dto.RecommendDto;
+import com.euntaek.BestSellerSpring.dto.*;
 import com.euntaek.BestSellerSpring.repository.RecommendRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor // 생성자 생성
 @Transactional//트랜잭션 적용
 public class RecommendService {
     private RecommendRepository recommendRepository;
-
+    
     //리뷰 데이터 저장
     public Long save(RecommendDto recommendDto){
 
         return recommendRepository.save(recommendDto.toEntity()).getR_num();
     }
-
+    //리뷰 전체 불러오기
     public List<RecommendDto> getReviewList(){
         List<Recommend>reviews=recommendRepository.findAll();
-        List<RecommendDto> reviewDtoList=new ArrayList<>();
+        List<RecommendDto> recommendDtoList=new ArrayList<>();
 
-        for(Recommend review: reviews){
+        for(Recommend recommend : reviews){
             RecommendDto recommendDto=RecommendDto.builder()
-                    .r_num(review.getR_num())
-                    .bname(review.getBname())
-                    .contents(review.getContents())
-                    .user_id(review.getUser_id())
+                    .r_num(recommend.getR_num())
+                    .bname(recommend.getBname())
+                    .contents(recommend.getContents())
+                    .userid(recommend.getUserid())
                     .build();
-
-            reviewDtoList.add(recommendDto);
+            recommendDtoList.add(recommendDto);
         }
-        return reviewDtoList;
+        return recommendDtoList;
     }
+
+    //리뷰 불러오기
+    public List<RecommendDto> getReview(UserDto userDto){
+        List<Recommend> review=recommendRepository.findByUserid(userDto.getUser_id());
+        List<RecommendDto>recommendDtoList=new ArrayList<>();
+
+        for(Recommend recommend : review){
+            RecommendDto recommendDto=RecommendDto.builder()
+                    .r_num(recommend.getR_num())
+                    .bname(recommend.getBname())
+                    .contents(recommend.getContents())
+                    .userid(recommend.getUserid())
+                    .build();
+            recommendDtoList.add(recommendDto);
+        }
+        return recommendDtoList;
+
+    }
+
+
 }

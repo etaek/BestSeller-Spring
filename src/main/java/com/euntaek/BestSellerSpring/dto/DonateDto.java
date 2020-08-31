@@ -17,7 +17,7 @@ import javax.persistence.Column;
 public class DonateDto {
     private Long d_num;
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    private String user_id=auth.getName();
+    private String userid=auth.getName();
     private String bookname;
     private String author;
     private String foundation;
@@ -25,7 +25,7 @@ public class DonateDto {
     public Donate toEntity(){
         return Donate.builder()
                 .d_num(d_num)
-                .user_id(user_id)
+                .userid(userid)
                 .bookname(bookname)
                 .author(author)
                 .foundation(foundation)
@@ -33,9 +33,9 @@ public class DonateDto {
     }
 
     @Builder
-    public DonateDto(Long d_num,String user_id,String bookname, String author, String foundation){
+    public DonateDto(Long d_num,String userid,String bookname, String author, String foundation){
         this.d_num=d_num;
-        this.user_id=user_id;
+        this.userid=userid;
         this.bookname=bookname;
         this.author=author;
         this.foundation=foundation;

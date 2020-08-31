@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Gift {
 
     @Id
-    private String user_id;
+    private String userid;
     @Column(name="target_id")
     private String target_id;
     @Column(name="bookname")
@@ -26,8 +26,8 @@ public class Gift {
     private String author;
 
     @Builder
-    public Gift(String user_id,String target_id,String bookname,String author){
-        this.user_id=user_id;
+    public Gift(String userid,String target_id,String bookname,String author){
+        this.userid=userid;
         this.target_id=target_id;
         this.bookname=bookname;
         this.author=author;

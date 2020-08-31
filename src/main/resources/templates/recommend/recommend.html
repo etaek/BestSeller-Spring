@@ -276,13 +276,12 @@ h2 {
     <div class="carousel-inner" id="listbox" role="listbox" th:each ="review : ${reviewList}" th:switch="${review.r_num}">
 
         <div th:case="'1'" class="item active">
-            <h4 th:text="${review.contents}"><br>
-                <span th:text="ID: ${review.user_id} / BOOK: ${review.bname}"></span></h4>
+            <h4 th:text="${review.contents}"><br><span th:text="ID: ${review.user_id} / BOOK: ${review.bname}"></span></h4>
         </div>
 
         <div  th:case="*"  class="item" >
             <h4 th:text="${review.contents}"><br>
-                <span th:text="ID: ${review.user_id} / BOOK: ${review.bname}"></span></h4>
+                <span th:text="'ID:'+ ${review.user_id}+ ' / BOOK: '+ ${review.bname}"></span></h4>
         </div>
                 <!--    <div th:if="${review.r_num}=='1'" class="item active">
                         <h4 th:text="${review.contents}"><br>

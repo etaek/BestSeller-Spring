@@ -24,6 +24,8 @@ public class MemberDto {
                 .build();
     }
 
+
+
     @Builder
     public MemberDto(String user_id,String password,String name,String address,String birth){
         this.user_id=user_id;

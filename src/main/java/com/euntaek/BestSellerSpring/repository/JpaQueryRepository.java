@@ -18,7 +18,7 @@ public class JpaQueryRepository implements CountRepository {
     @Override
     public List<Long> findCount()  {
         Query query=em.createQuery(
-                "SELECT count(d.user_id) as count FROM Donate d GROUP BY d.user_id order by count(d.user_id) desc ");
+                "SELECT count(d.userid) as count FROM Donate d GROUP BY d.userid order by count(d.userid) desc ");
         query.setFirstResult(0);
         query.setMaxResults(3);
         List result=query.getResultList();
@@ -29,7 +29,7 @@ public class JpaQueryRepository implements CountRepository {
     @Override
     public List<String> findId()  {
         Query query=em.createQuery(
-                "SELECT d.user_id FROM Donate d GROUP BY d.user_id order by count(d.user_id) desc ");
+                "SELECT d.userid FROM Donate d GROUP BY d.userid order by count(d.userid) desc ");
         query.setFirstResult(0);
         query.setMaxResults(3);
         List result=query.getResultList();

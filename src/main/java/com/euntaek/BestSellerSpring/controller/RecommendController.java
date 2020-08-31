@@ -18,6 +18,7 @@ import java.util.List;
 public class RecommendController {
     private BestSellerService bestSellerService;
     private RecommendService recommendService;
+
     @GetMapping("/recommend")
     public String recommend(DonateDto donateDto, Model model){
         List<BestSellerDto> bestSellerDtoList=bestSellerService.getBestSellerlist();
