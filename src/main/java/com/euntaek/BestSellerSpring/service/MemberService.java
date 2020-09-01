@@ -33,19 +33,29 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
     private MemberRepository memberRepository;
 
-    public String save(MemberDto memberDto){
+    public Long save(MemberDto memberDto){
         //비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
-        return memberRepository.save(memberDto.toEntity()).getUser_id();
+        return memberRepository.save(memberDto.toEntity()).getId();
+    }
+
+    public Long update(MemberDto memberDto){
+
+        System.out.println(memberDto.getUserid());
+        System.out.println(memberDto.getPassword());
+
+        return memberRepository.save(memberDto.toEntity()).getId();
     }
 
     public MemberDto getMemberList(GiftDto giftDto){ //gift 결과 목록
-        Optional<Member> target=memberRepository.findById(giftDto.getTarget_id());
+        Optional<Member> target=memberRepository.findByUserid(giftDto.getTarget_id());
+        System.out.println(giftDto.getTarget_id());
         Member member=target.get();
-
+        System.out.println(member.getUserid());
         MemberDto memberDTO = MemberDto.builder()
-                .user_id(member.getUser_id())
+                .id(member.getId())
+                .userid(member.getUserid())
                 .password(member.getPassword())
                 .name(member.getName())
                 .address(member.getAddress())
@@ -57,12 +67,13 @@ public class MemberService implements UserDetailsService {
         return memberDTO;
     }
 
-    public MemberDto getUserList(UserDto userDto){ //멤버 목록
-        Optional<Member> target=memberRepository.findById(userDto.getUser_id());
+    public MemberDto getUserInfo(UserDto userDto){ //멤버 정보
+        Optional<Member> target=memberRepository.findByUserid(userDto.getUser_id());
         Member member=target.get();
 
         MemberDto memberDTO = MemberDto.builder()
-                .user_id(member.getUser_id())
+                .id(member.getId())
+                .userid(member.getUserid())
                 .password(member.getPassword())
                 .name(member.getName())
                 .address(member.getAddress())
@@ -77,10 +88,9 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 
-        Optional<Member> userEntityWrapper = memberRepository.findById(user_id);
+        Optional<Member> userEntityWrapper = memberRepository.findByUserid(user_id);
         Member member = userEntityWrapper.get();
-        System.out.println(member.getUser_id());
-        System.out.println(member.getPassword());
+
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (("dmsxor").equals(user_id)) {
@@ -90,7 +100,7 @@ public class MemberService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return new User(member.getUser_id(), member.getPassword(), authorities);
+        return new User(member.getUserid(), member.getPassword(), authorities);
 
     }
 }

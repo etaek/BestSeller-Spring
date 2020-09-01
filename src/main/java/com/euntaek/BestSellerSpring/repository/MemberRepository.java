@@ -8,9 +8,10 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, String> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Optional<Member> findById(String user_id);
+    Optional<Member> findByUserid(String userid);
+    Optional<Member> findById(Long id);
 
 
 }

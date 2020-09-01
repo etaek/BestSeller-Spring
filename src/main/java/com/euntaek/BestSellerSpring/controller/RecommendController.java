@@ -32,12 +32,13 @@ public class RecommendController {
 
     @PostMapping("/review")
     public String review(RecommendDto recommendDto,Model model){
+        recommendService.save(recommendDto);
         List<BestSellerDto> bestSellerDtoList=bestSellerService.getBestSellerlist();
         model.addAttribute("bestSellerList",bestSellerDtoList);
 
         List<RecommendDto> reviewDtoList=recommendService.getReviewList();
         model.addAttribute("reviewList",reviewDtoList);
-        recommendService.save(recommendDto);
+
         return "recommend/recommend";
     }
 }

@@ -1,5 +1,6 @@
 package com.euntaek.BestSellerSpring.controller;
 
+import com.euntaek.BestSellerSpring.domain.Member;
 import com.euntaek.BestSellerSpring.dto.*;
 import com.euntaek.BestSellerSpring.service.DonateService;
 import com.euntaek.BestSellerSpring.service.GiftService;
@@ -47,12 +48,10 @@ public class MemberController {
 
     //내정보 페이지
     @GetMapping("/myInfo")
-    public String myInfo(UserDto userDto, Model model){
-        MemberDto member= memberService.getUserList(userDto);
-        model.addAttribute("id",member.getUser_id());
-        model.addAttribute("name",member.getName());
-        model.addAttribute("birth",member.getBirth());
-        model.addAttribute("address",member.getAddress());
+    public String myInfo(MemberDto memberDto,UserDto userDto, Model model){
+
+        MemberDto member= memberService.getUserInfo(userDto);
+        model.addAttribute("member",member);
 
         List<RecommendDto> review=recommendService.getReview(userDto);
         model.addAttribute("reviewList",review);
@@ -67,23 +66,19 @@ public class MemberController {
 
     //내정보 페이지
     @GetMapping("/modify")
-    public String modify(UserDto userDto, Model model){
-        MemberDto member= memberService.getUserList(userDto);
-        model.addAttribute("userid",member.getUser_id());
-        model.addAttribute("name",member.getName());
-        model.addAttribute("birth",member.getBirth());
-        model.addAttribute("address",member.getAddress());
+    public String modify(MemberDto memberDto,UserDto userDto, Model model){
+        MemberDto member= memberService.getUserInfo(userDto);
+        model.addAttribute("member",member);
+
 
         return "user/modify";
     }
     @PutMapping("/modify")
     public String modifyChange(MemberDto memberDto,UserDto userDto, Model model){
-        memberService.save(memberDto);
-        MemberDto member= memberService.getUserList(userDto);
-        model.addAttribute("id",member.getUser_id());
-        model.addAttribute("name",member.getName());
-        model.addAttribute("birth",member.getBirth());
-        model.addAttribute("address",member.getAddress());
+        memberService.update(memberDto);
+        MemberDto member= memberService.getUserInfo(userDto);
+        model.addAttribute("member",member);
+
 
         List<RecommendDto> review=recommendService.getReview(userDto);
         model.addAttribute("reviewList",review);

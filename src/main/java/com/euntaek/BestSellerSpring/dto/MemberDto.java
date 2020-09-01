@@ -7,8 +7,8 @@ import lombok.*;
 @Setter
 @NoArgsConstructor   //인자가없는
 public class MemberDto {
-
-    private String user_id;
+    private Long id;
+    private String userid;
     private String password;
     private String name;
     private String address;
@@ -16,10 +16,11 @@ public class MemberDto {
 
     public Member toEntity(){
         return Member.builder()
-                .user_id(user_id)
-                .password(password)
+                .id(id)
+                .userid(userid)
                 .name(name)
                 .address(address)
+                .password(password)
                 .birth(birth)
                 .build();
     }
@@ -27,11 +28,12 @@ public class MemberDto {
 
 
     @Builder
-    public MemberDto(String user_id,String password,String name,String address,String birth){
-        this.user_id=user_id;
-        this.password=password;
+    public MemberDto(Long id,String userid,String name,String address,String password,String birth){
+        this.id=id;
+        this.userid=userid;
         this.name=name;
         this.address=address;
+        this.password=password;
         this.birth=birth;
     }
 }

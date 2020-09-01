@@ -92,7 +92,7 @@ function change3() {
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="category.do">Home</a>
+                    <a class="nav-link" th:href="@{'/'}">Home</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Mypage
@@ -130,10 +130,10 @@ function change3() {
                         <div id="s2">
 
 
-                                <h6 th:text="'ID : '+${id}"></h6>
-                                <h6 th:text="'Name : '+${name}"></h6>
-                                <h6 th:text="'Birth : '+${birth}"></h6>
-                                <h6 th:text="'Address : '+${address}"></h6>
+                                <h6 th:text="'ID : '+${member.userid}"></h6>
+                                <h6 th:text="'Name : '+${member.name}"></h6>
+                                <h6 th:text="'Birth : '+${member.birth}"></h6>
+                                <h6 th:text="'Address : '+${member.address}"></h6>
 
                                 <hr>
 
@@ -161,11 +161,11 @@ function change3() {
                     <!-- CONTENTS !-->
                     <tr th:each="review : ${reviewList}">
                         <td>
-                            <span th:text="${review.contents}"></span>
+                            <span th:text="${review.bname}"></span>
                         </td>
 
                         <td>
-                            <span th:text="${review.bname}"></span>
+                            <span th:text="${review.contents}"></span>
                         </td>
 
                     </tr>
