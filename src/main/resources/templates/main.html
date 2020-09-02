@@ -444,26 +444,24 @@
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAlOjojzJqN5CEy7iGWtTTiWgCMiPUhXI&callback=myMap"></script>
         </div>
         <div class="col-lg-6 contactBox" data-aos="fade-left">
-
+            <form th:action="@{'/message'}" method="post">
             <div class="row">
-                <div class="col-sm-6 form-group">
-                    <select class="form-control" id="select" name="select" placeholder="category" required>
-                        <option>배송 관련</option>
-                        <option>신청 변경</option>
-                        <option>신청 취소</option>
-                        <option>회원 관련</option>
-                        <option>시스템 장애</option>
+                <div class="col-sm-6 form-group" >
+                    <select class="form-control" id="select" name="c_num" placeholder="category" required >
+                        <option th:each="category : ${categoryList}" th:value="${category.c_num}" th:text="${category.category_title}"></option>
+
                     </select>
                 </div>
 
             </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+            <textarea class="form-control" id="comments" name="contents" placeholder="Comment" rows="5"></textarea>
             <br>
             <div class="row">
                 <div class="col-md-12 form-group">
                     <button class="btn pull-right" type="submit">Send</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
     <br>
@@ -475,7 +473,7 @@
 <div class="footNav" > <!--This is menu bar.-->
     <a href="aboutUs.jsp" style="margin-left: 20px;">About Us</a>
     <a href="#order">Privacy Statement</a>
-    <a href="faq.do">FAQ</a>
+    <a th:href="@{'/faq'}">FAQ</a>
     <a href="#contact">Site map</a>
     <a href="#" style="margin-left: 70%;" class="top">TOP ▲</a>
 </div>
