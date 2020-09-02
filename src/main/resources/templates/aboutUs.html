@@ -66,10 +66,10 @@
 </head>
 <body>
 <div class="topnav"> <!--This is menu bar.-->
-    <a href="" id="a1">HOME</a>
-    <a href="">GIFT</a>
-    <a href="">DONATION</a>
-    <a href="">RECOMMEND</a>
+    <a th:href="@{'/'}" id="a1">HOME</a>
+    <a th:href="@{'/gift'}">GIFT</a>
+    <a th:href="@{'/donate'}">DONATION</a>
+    <a th:href="@{'/recommend'}">RECOMMEND</a>
 </div>
 
 <script type="text/javascript">
@@ -386,7 +386,7 @@
 <div class="footNav" style="clear: both;"> <!--This is menu bar.-->
     <a th:href="@{'/about'}" style="margin-left: 20px;">About Us</a>
     <a href="#order">Privacy Statement</a>
-    <a href="#event">FAQ</a>
+    <a th:href="@{'/faq'}">FAQ</a>
     <a href="#contact">Site map</a>
     <a href="#" style="margin-left: 70%;" class="top"> &nbsp;TOP&nbsp; </a>
 </div>

@@ -28,7 +28,6 @@ public class CategoryService {
                     .c_num(category.getC_num())
                     .category_title(category.getCategory_title())
                     .build();
-            System.out.println(categoryDto.getCategory_title());
             categoryDtoList.add(categoryDto);
         }
         return categoryDtoList;
