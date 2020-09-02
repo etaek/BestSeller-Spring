@@ -3,10 +3,11 @@
 
 ## 개발 환경
 * 개발환경
-  * IDEA: IntelliJ
+  * IDEA: IntelliJ 20.2
   * Java 11
-  * Gradle 6.0.1
+  * Gradle 6.4.1
   * Spring Boot 2.3.3
+  * MySQL 8.0.18
 
 * 라이브러리
   * JPA
